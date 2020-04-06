@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <div class="q-py-sm full-width" >
+    <div class="q-py-md full-width" >
      <q-list>
 <div class="row justify-center align-center">
 <div v-for="(rating, index) in masterRatings" :key="index" class="col-12 col-sm-6 col-lg-4">
