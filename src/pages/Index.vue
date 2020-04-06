@@ -1,6 +1,7 @@
 <template>
   <q-page class="flex flex-center">
-    <q-list>
+    <q-spinner-gears color="primary" size="7em" v-if="loading" />
+    <q-list v-else>
       <div class="row justify-center align-center q-py-md full-width">
         <div class="col-12 col-sm-6 col-lg-4" v-for="(rating, index) in masterRatings" :key="index">
           <q-expansion-item expand-icon-class="hidden">
@@ -62,6 +63,9 @@ export default {
   computed: {
     masterRatings() {
       return this.$store.state.store.masterRatings;
+    },
+    loading() {
+      return this.masterRatings.length < 1;
     }
   }
 };
