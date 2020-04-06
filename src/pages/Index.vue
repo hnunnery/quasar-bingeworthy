@@ -3,7 +3,7 @@
     <div class="q-pa-sm full-width" >
      <q-list>
 <div class="row justify-center">
-<div v-for="(rating, index) in masterRatings" :key="index" class="col-12 col-lg-6">
+<div v-for="(rating, index) in masterRatings" :key="index" class="col-12 col-sm-6 col-lg-4">
       <q-expansion-item>
         <template v-slot:header>
             <q-item-section>
