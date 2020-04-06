@@ -36,9 +36,14 @@
 
         <q-card>
           <q-card-section>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-            commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-            eveniet doloribus ullam aliquid.
+            <div class="row justify-center align-center">
+              <div class="col-6">
+                <q-btn color="primary" label="Rate This" />
+              </div>
+              <div class="col-6">
+                <q-btn color="primary" label="Rate This" />
+              </div>
+            </div>
           </q-card-section>
         </q-card>
       </q-expansion-item>
