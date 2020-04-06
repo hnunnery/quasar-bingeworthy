@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <div class="q-pa-sm full-width" >
+    <div class="q-py-sm q-px-xs full-width" >
      <q-list>
 <div class="row justify-center">
 <div v-for="(rating, index) in masterRatings" :key="index" class="col-12 col-sm-6 col-lg-4">
@@ -16,6 +16,7 @@
             <q-space />
 
             <q-item-section top side>
+            <q-item-label>
                 <q-rating
         v-model="rating.roundedRating"
         max="5"
@@ -25,6 +26,7 @@
         icon-selected="star"
         icon-half="star_half"
       />
+      </q-item-label>
               <q-item-label class="text-subtitle1">({{ rating.ratings.length }}) &nbsp;&nbsp;{{
                 rating.roundedRating
               }}</q-item-label>
