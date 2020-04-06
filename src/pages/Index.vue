@@ -16,11 +16,11 @@
             <q-space />
 
             <q-item-section top side>
-            <q-item-label>
+            <q-item-label class="q-mb-xs" >
                 <q-rating
         v-model="rating.roundedRating"
         max="5"
-        size="1.8em"
+        size="1.6em"
         color="primary"
         icon="star_border"
         icon-selected="star"
@@ -28,7 +28,7 @@
         readonly
       />
       </q-item-label>
-              <q-item-label class="text-subtitle1">({{ rating.ratings.length }}) &nbsp;&nbsp;{{
+              <q-item-label class="text-subtitle1 q-pr-xs">({{ rating.ratings.length }}) &nbsp;&nbsp;{{
                 rating.roundedRating
               }}</q-item-label>
             </q-item-section>
