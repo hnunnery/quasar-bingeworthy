@@ -1,9 +1,12 @@
 <template>
   <q-page class="flex flex-center">
     <div class="q-pa-sm full-width" >
-      <q-list>
-        <div v-for="(rating, index) in masterRatings" :key="index">
-          <q-item>
+     <q-list>
+
+<div v-for="(rating, index) in masterRatings" :key="index">
+
+      <q-expansion-item>
+        <template v-slot:header>
             <q-item-section>
               <q-item-label class="text-h6">{{ rating.name }}</q-item-label>
               <q-item-label class="text-subtitle1">{{
@@ -27,7 +30,17 @@
                 rating.roundedRating
               }}</q-item-label>
             </q-item-section>
-          </q-item>
+        </template>
+
+        <q-card>
+          <q-card-section>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+            commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+            eveniet doloribus ullam aliquid.
+          </q-card-section>
+        </q-card>
+      </q-expansion-item>
+         
           <q-separator spaced inset />
         </div>
       </q-list>
