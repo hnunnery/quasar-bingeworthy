@@ -10,6 +10,8 @@
                 rating.platform
               }}</q-item-label>
             </q-item-section>
+            
+            <q-space />
 
             <q-item-section top side>
               <div
