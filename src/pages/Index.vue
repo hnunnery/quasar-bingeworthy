@@ -37,11 +37,11 @@
         <q-card>
           <q-card-section>
             <div class="row justify-center align-center">
-              <div class="col-9">
+              <div class="col-7">
                 <q-btn color="primary" label="Rate This" />
               </div>
-              <div class="col-3">
-                <q-btn color="primary" label="Rate This" class="text-right"/>
+              <div class="col-5">
+                <q-btn color="primary" label="Rate This" class="text-right q-pr-xs"/>
               </div>
             </div>
           </q-card-section>
