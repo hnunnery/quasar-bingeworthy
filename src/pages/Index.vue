@@ -2,7 +2,7 @@
   <q-page class="flex flex-center">
     <div class="q-py-sm full-width" >
      <q-list>
-<div class="row justify-center">
+<div class="row justify-center align-center">
 <div v-for="(rating, index) in masterRatings" :key="index" class="col-12 col-sm-6 col-lg-4">
       <q-expansion-item expand-icon-class="hidden">
         <template v-slot:header>
@@ -20,11 +20,12 @@
                 <q-rating
         v-model="rating.roundedRating"
         max="5"
-        size="1.5em"
+        size="1.8em"
         color="primary"
         icon="star_border"
         icon-selected="star"
         icon-half="star_half"
+        readonly
       />
       </q-item-label>
               <q-item-label class="text-subtitle1">({{ rating.ratings.length }}) &nbsp;&nbsp;{{
