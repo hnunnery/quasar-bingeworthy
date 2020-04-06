@@ -16,7 +16,7 @@
             <q-space />
 
             <q-item-section top side>
-            <q-item-label class="q-mb-xs" >
+            <q-item-label>
                 <q-rating
         v-model="rating.roundedRating"
         max="5"
