@@ -4,7 +4,7 @@
      <q-list>
 <div class="row justify-center">
 <div v-for="(rating, index) in masterRatings" :key="index" class="col-12 col-sm-6 col-lg-4">
-      <q-expansion-item class="q-px-none">
+      <q-expansion-item expand-icon-class="hidden">
         <template v-slot:header>
             <q-item-section>
               <q-item-label class="text-h6">{{ rating.name }}</q-item-label>
