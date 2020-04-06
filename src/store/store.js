@@ -9,7 +9,7 @@ const state = () => ({
   error: null,
   searchBar: false,
   message: "",
-  success: false,
+  success: false
 });
 
 // MUTATIONS
@@ -17,8 +17,8 @@ const state = () => ({
 const mutations = {
   setLoadedRatings(state, payload) {
     state.ratings = payload;
-    state.names = state.ratings.map((rating) => rating.name);
-    state.platforms = state.ratings.map((rating) => rating.platform);
+    state.names = state.ratings.map(rating => rating.name);
+    state.platforms = state.ratings.map(rating => rating.platform);
   },
   addRating(state, payload) {
     state.ratings.push(payload);
@@ -30,7 +30,7 @@ const mutations = {
     }, 1000);
   },
   deleteRating(state, payload) {
-    state.ratings = state.ratings.filter((rating) => rating.id !== payload);
+    state.ratings = state.ratings.filter(rating => rating.id !== payload);
     state.message = "Deleted!";
     state.success = true;
     setTimeout(() => {
@@ -38,7 +38,7 @@ const mutations = {
     }, 1000);
   },
   updateRating(state, payload) {
-    state.ratings.forEach((rating) => {
+    state.ratings.forEach(rating => {
       if (rating.id === payload.id) {
         rating.name = payload.name;
         rating.rating = payload.rating;
@@ -86,7 +86,7 @@ const mutations = {
     setTimeout(() => {
       state.success = false;
     }, 2000);
-  },
+  }
 };
 
 // ACTIONS
@@ -97,9 +97,9 @@ const actions = {
     db.collection("show")
       .orderBy("rating", "desc")
       .get()
-      .then((querySnapshot) => {
+      .then(querySnapshot => {
         let ratings = [];
-        querySnapshot.forEach((doc) => {
+        querySnapshot.forEach(doc => {
           let rating = doc.data();
           rating.id = doc.id;
           ratings.push(rating);
@@ -111,18 +111,18 @@ const actions = {
   createMasterRatings({ commit, state }) {
     let tempMaster = [];
     let nameList = [];
-    state.names.map((x) => {
+    state.names.map(x => {
       if (!nameList.includes(x)) {
         nameList.push(x);
       }
     });
-    nameList.forEach((name) => {
+    nameList.forEach(name => {
       let obj = {};
       obj.name = name;
       obj.platform = "";
       obj.ratings = [];
       obj.users = [];
-      state.ratings.forEach((rating) => {
+      state.ratings.forEach(rating => {
         if (rating.name === name) {
           obj.platform = rating.platform;
           obj.ratings.push(rating.rating);
@@ -131,7 +131,7 @@ const actions = {
       });
       tempMaster.push(obj);
     });
-    tempMaster.forEach((rating) => {
+    tempMaster.forEach(rating => {
       let averageRating = parseFloat(
         rating.ratings.reduce((a, b) => a + b, 0) / rating.ratings.length
       );
@@ -139,17 +139,14 @@ const actions = {
       let weight = rating.ratings.length * 0.01;
       rating.averageRating = averageRating + weight;
     });
-    const master = tempMaster.filter((rating) => rating.ratings.length > 1);
+    const master = tempMaster.filter(rating => rating.ratings.length > 1);
     master.sort((a, b) => (a.averageRating < b.averageRating ? 1 : -1));
-    master.forEach((rating) => {
+    master.forEach(rating => {
       rating.rank = master.indexOf(rating) + 1;
-      rating.roundedRating = rating.averageRating.toFixed(2);
-      // console.log(
-      //   `${rating.rank}: ${rating.name} (${rating.averageRating.toFixed(2)})`
-      // );
+      rating.roundedRating = parseFloat(rating.averageRating.toFixed(2));
     });
     // ROUNDING DOWN TO NEAREST .5 TO CONTROL VUETIFY RATING COMPONENT
-    master.forEach((rating) => {
+    master.forEach(rating => {
       rating.averageRating = Math.floor(rating.averageRating * 2) / 2;
     });
 
@@ -161,17 +158,17 @@ const actions = {
     commit("clearError");
     auth
       .createUserWithEmailAndPassword(payload.email, payload.password)
-      .then((user) => {
+      .then(user => {
         auth.currentUser
           .updateProfile({
-            displayName: payload.displayName,
+            displayName: payload.displayName
           })
-          .then(function () {
+          .then(function() {
             console.log("Updated Display Name");
             commit("updateUserName", payload.displayName);
           });
       })
-      .catch((error) => {
+      .catch(error => {
         commit("setError", error);
         console.log(error);
       });
@@ -180,7 +177,7 @@ const actions = {
     commit("clearError");
     auth
       .signInWithEmailAndPassword(payload.email, payload.password)
-      .catch((error) => {
+      .catch(error => {
         commit("setError", error);
         console.log(error);
       });
@@ -193,7 +190,7 @@ const actions = {
     }
     commit("setUser", {
       id: payload.uid,
-      name: payload.displayName,
+      name: payload.displayName
     });
   },
   updateDisplayName({ commit }, payload) {
@@ -201,13 +198,13 @@ const actions = {
     const router = this.$router;
     auth.currentUser
       .updateProfile({
-        displayName: payload,
+        displayName: payload
       })
-      .then(function () {
+      .then(function() {
         commit("updateUserName", payload);
         router.push("/");
       })
-      .catch((error) => {
+      .catch(error => {
         commit("setError", error);
         console.log(error);
       });
@@ -216,7 +213,7 @@ const actions = {
     auth.signOut();
     commit("setUser", null);
     this.$router.push("/");
-  },
+  }
 };
 
 const getters = {
@@ -228,7 +225,7 @@ const getters = {
   },
   userRatings(state) {
     let newList = [];
-    state.ratings.forEach((rating) => {
+    state.ratings.forEach(rating => {
       if (rating.userId === state.user.id) {
         newList.push(rating);
       }
@@ -246,7 +243,7 @@ const getters = {
   },
   user(state) {
     return state.user;
-  },
+  }
 };
 
 export default {
@@ -255,5 +252,5 @@ export default {
   state,
   mutations,
   actions,
-  getters,
+  getters
 };
