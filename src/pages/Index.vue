@@ -40,8 +40,8 @@
               <div class="col-7">
                 This is where the information such as links for more info.
               </div>
-              <div class="col-5 text-right">
-                <q-btn color="primary" label="Rate This" class="q-pr-xs"/>
+              <div class="col-5 text-right q-pr-xs">
+                <q-btn color="primary" label="Rate This" />
               </div>
             </div>
           </q-card-section>
