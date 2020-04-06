@@ -28,7 +28,7 @@
                 <q-icon name="star" />
                 <q-icon name="star" />
               </div>
-              <q-item-label class="text-subtitle1">({{ rating.ratings.length }}) {{
+              <q-item-label class="text-subtitle1">({{ rating.ratings.length }}) &nbsp;&nbsp;{{
                 rating.roundedRating
               }}</q-item-label>
             </q-item-section>
