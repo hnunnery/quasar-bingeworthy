@@ -2,12 +2,9 @@
   <q-page class="flex flex-center">
     <div class="q-pa-sm full-width" >
      <q-list>
-
-<div v-for="(rating, index) in masterRatings" :key="index">
-
-      <q-expansion-item 
-        
-      >
+<div class="row justify-center">
+<div v-for="(rating, index) in masterRatings" :key="index" class="col-12 col-lg-6">
+      <q-expansion-item>
         <template v-slot:header>
             <q-item-section>
               <q-item-label class="text-h6">{{ rating.name }}</q-item-label>
@@ -46,6 +43,7 @@
           <q-separator spaced inset />
         </div>
       </q-list>
+      </div>
     </div>
   </q-page>
 </template>
