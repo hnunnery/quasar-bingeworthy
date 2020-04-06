@@ -1,14 +1,11 @@
 <template>
   <q-page class="flex flex-center">
-    <q-card
-      class="q-ma-sm q-pa-lg text-center"
-      style="width: 100%; max-width: 500px;"
-    >
+    <q-card class="q-ma-sm q-pa-lg text-center" style="width: 100%; max-width: 500px;">
       <h2 class="text-h4 q-my-md">Sign Up for Account</h2>
       <q-input v-model="displayName" label="Full Name" class="q-my-lg" />
       <q-input v-model="email" label="Email" class="q-my-lg" />
       <q-input v-model="password" label="Password" class="q-my-lg" />
-      <q-btn class="glossy q-mt-sm" color="primary" label="Sign Up" />
+      <q-btn class="q-mt-sm" color="primary" label="Sign Up" />
     </q-card>
   </q-page>
 </template>
@@ -19,13 +16,13 @@ export default {
     return {
       displayName: "",
       email: "",
-      password: "",
+      password: ""
     };
   },
   computed: {
     user() {
       return this.$store.getters.store.user;
-    },
+    }
     // error() {
     //   return this.$store.getters.error;
     // }
@@ -35,12 +32,12 @@ export default {
       this.$store.dispatch("store/signUserUp", {
         email: this.email,
         password: this.password,
-        displayName: this.displayName,
+        displayName: this.displayName
       });
-    },
+    }
     // onDismissed() {
     //   this.$store.dispatch("clearError");
     // }
-  },
+  }
 };
 </script>

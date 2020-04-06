@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar class="glossy">
+      <q-toolbar>
         <q-btn
           flat
           dense
@@ -11,7 +11,10 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>BingeWorthy</q-toolbar-title>
+        <q-toolbar-title
+          class="text-weight-medium text-italic"
+          style="letter-spacing: -1px;"
+        >BingeWorthy</q-toolbar-title>
       </q-toolbar>
     </q-header>
 

@@ -41,9 +41,17 @@
             <q-card>
               <q-card-section>
                 <div class="row justify-center align-center">
-                  <div class="col-7">This is where the information such as links for more info.</div>
+                  <div class="col-7">
+                    <q-btn
+                      flat
+                      clickable
+                      @click="setSearch(rating.name)"
+                      label="See Ratings for this Show"
+                      class="text-capitalize"
+                    ></q-btn>
+                  </div>
                   <div class="col-5 text-right q-pr-xs">
-                    <q-btn color="primary" label="Rate This" />
+                    <q-btn color="primary" label="Rate This" class="text-capitalize" />
                   </div>
                 </div>
               </q-card-section>
@@ -66,6 +74,11 @@ export default {
     },
     loading() {
       return this.masterRatings.length < 1;
+    }
+  },
+  methods: {
+    setSearch(myVar) {
+      console.log(myVar);
     }
   }
 };
