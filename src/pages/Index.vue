@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <div class="q-pa-sm">
+    <div class="q-pa-sm full-width" >
       <q-list>
         <div v-for="(rating, index) in masterRatings" :key="index">
           <q-item>
