@@ -16,15 +16,15 @@
             <q-space />
 
             <q-item-section top side>
-              <div
-                class="text-primary"
-                style="font-size: 1.5em; margin-top: -5px;"
-              >
-                <q-icon name="star" />
-                <q-icon name="star" />
-                <q-icon name="star" />
-                <q-icon name="star" />
-              </div>
+                <q-rating
+        v-model="rating.roundedRating"
+        max="5"
+        size="1.5em"
+        color="primary"
+        icon="star_border"
+        icon-selected="star"
+        icon-half="star_half"
+      />
               <q-item-label class="text-subtitle1">({{ rating.ratings.length }}) &nbsp;&nbsp;{{
                 rating.roundedRating
               }}</q-item-label>
