@@ -5,7 +5,9 @@
 
 <div v-for="(rating, index) in masterRatings" :key="index">
 
-      <q-expansion-item>
+      <q-expansion-item 
+        dense-toggle
+      >
         <template v-slot:header>
             <q-item-section>
               <q-item-label class="text-h6">{{ rating.name }}</q-item-label>
