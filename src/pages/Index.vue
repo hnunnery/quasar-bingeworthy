@@ -11,7 +11,7 @@
         <template v-slot:header>
             <q-item-section>
               <q-item-label class="text-h6">{{ rating.name }}</q-item-label>
-              <q-item-label class="text-subtitle1">{{
+              <q-item-label class="text-subtitle1 text-grey-8">{{
                 rating.platform
               }}</q-item-label>
             </q-item-section>
