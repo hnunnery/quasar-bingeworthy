@@ -1,6 +1,5 @@
 <template>
   <q-page class="flex flex-center">
-  <q-form @submit="onSignIn"
     <q-card
       class="q-ma-sm q-pa-lg text-center"
       style="width: 100%; max-width: 500px;"
@@ -9,13 +8,12 @@
       <q-input v-model="email" label="Email" class="q-my-lg" />
       <q-input v-model="password" label="Password" class="q-my-lg" />
       <q-btn
-        type="submit"
+        @click="onSignIn"
         class="glossy q-mt-sm"
         color="primary"
         label="Sign In"
       />
     </q-card>
-    </q-form>
   </q-page>
 </template>
 
