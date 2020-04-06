@@ -8,7 +8,7 @@
             <template v-slot:header>
               <q-item-section>
                 <q-item-label class="text-h6">{{ rating.name }}</q-item-label>
-                <q-item-label class="text-subtitle1 text-grey-8">
+                <q-item-label class="text-subtitle1 text-grey-7">
                   {{
                   rating.platform
                   }}
