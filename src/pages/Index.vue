@@ -38,10 +38,10 @@
           <q-card-section>
             <div class="row justify-center align-center">
               <div class="col-7">
-                <q-btn color="primary" label="Rate This" />
+                This is where the information such as links to the list of who rated this show and other shows on that platform.
               </div>
-              <div class="col-5">
-                <q-btn color="primary" label="Rate This" class="text-right q-pr-xs"/>
+              <div class="col-5 text-right">
+                <q-btn color="primary" label="Rate This" class="q-pr-xs"/>
               </div>
             </div>
           </q-card-section>
