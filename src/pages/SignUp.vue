@@ -1,11 +1,23 @@
 <template>
   <q-page class="flex flex-center">
-    <q-card class="q-ma-sm q-pa-lg text-center" style="width: 100%; max-width: 500px;">
-      <h2 class="text-h4 q-my-md">Sign Up for Account</h2>
-      <q-input v-model="displayName" label="Full Name" class="q-my-lg" />
-      <q-input v-model="email" label="Email" class="q-my-lg" />
-      <q-input v-model="password" label="Password" class="q-my-lg" />
-      <q-btn class="q-mt-sm" color="primary" label="Sign Up" />
+    <q-card
+      class="q-ma-sm q-pa-lg text-center"
+      style="width: 100%; max-width: 500px;"
+    >
+      <form @submit.prevent="onSignUp">
+        <h2 class="text-h4 q-my-md">Sign Up for Account</h2>
+        <q-input v-model="displayName" label="Full Name" class="q-my-lg" />
+        <q-input v-model="email" label="Email" class="q-my-lg" />
+        <q-input v-model="password" label="Password" class="q-my-lg" />
+        <q-btn
+          ripple
+          type="submit"
+          class="q-my-md text-capitalize q-px-sm"
+          color="primary"
+          size="1.2em"
+          label="Sign Up"
+        />
+      </form>
     </q-card>
   </q-page>
 </template>

@@ -164,15 +164,17 @@ const actions = {
     commit("setMasterRatings", master);
   },
   createUserRatings({ commit, state }) {
-    const newList = [];
-    state.ratings.forEach(rating => {
-      if (rating.userId === state.user.id) {
-        newList.push(rating);
-      }
-    });
+    if (state.user) {
+      const newList = [];
+      state.ratings.forEach(rating => {
+        if (rating.userId === state.user.id) {
+          newList.push(rating);
+        }
+      });
 
-    // COMMIT TO MUTATION AND STATE
-    commit("setUserRatings", newList);
+      // COMMIT TO MUTATION AND STATE
+      commit("setUserRatings", newList);
+    }
   },
   createRecentRatings({ commit, state }) {
     const newList = state.ratings.sort((ratingA, ratingB) =>
@@ -211,7 +213,7 @@ const actions = {
         console.log(error);
       });
   },
-  autoSignIn({ commit }, payload) {
+  autoSignIn({ commit, dispatch }, payload) {
     if (!payload.displayName) {
       this.$router.push("/updatename");
     } else {
@@ -221,6 +223,7 @@ const actions = {
       id: payload.uid,
       name: payload.displayName
     });
+    dispatch("createUserRatings");
   },
   updateDisplayName({ commit }, payload) {
     commit("clearError");
