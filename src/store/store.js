@@ -5,6 +5,7 @@ const state = () => ({
   ratings: [],
   masterRatings: [],
   userRatings: [],
+  recentRatings: [],
   names: [],
   platforms: [],
   error: null,
@@ -26,6 +27,9 @@ const mutations = {
   },
   setUserRatings(state, payload) {
     state.userRatings = payload;
+  },
+  setRecentRatings(state, payload) {
+    state.recentRatings = payload;
   },
   addRating(state, payload) {
     state.ratings.push(payload);
@@ -111,6 +115,7 @@ const actions = {
         commit("setLoadedRatings", ratings);
         dispatch("createMasterRatings");
         dispatch("createUserRatings");
+        dispatch("createRecentRatings");
       });
   },
   createMasterRatings({ commit, state }) {
@@ -168,6 +173,14 @@ const actions = {
 
     // COMMIT TO MUTATION AND STATE
     commit("setUserRatings", newList);
+  },
+  createRecentRatings({ commit, state }) {
+    const newList = state.ratings.sort((ratingA, ratingB) =>
+      ratingA.date > ratingB.date ? -1 : 1
+    );
+
+    // COMMIT TO MUTATION AND STATE
+    commit("setRecentRatings", newList);
   },
   // USER HANDLING
   signUserUp({ commit }, payload) {
@@ -233,9 +246,6 @@ const actions = {
 };
 
 const getters = {
-  masterRatings(state) {
-    return state.masterRatings;
-  },
   error(state) {
     return state.error;
   },
@@ -244,9 +254,6 @@ const getters = {
   },
   fetchSuccess(state) {
     return state.success;
-  },
-  user(state) {
-    return state.user;
   }
 };
 

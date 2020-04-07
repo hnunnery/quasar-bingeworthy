@@ -149,7 +149,6 @@ export default {
     auth.onAuthStateChanged(user => {
       if (user) {
         this.$store.dispatch("store/autoSignIn", user);
-        this.$store.dispatch("store/createUserRatings");
       }
     });
   }

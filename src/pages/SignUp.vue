@@ -21,10 +21,10 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.getters.store.user;
+      return this.$store.state.store.user;
     }
     // error() {
-    //   return this.$store.getters.error;
+    //   return this.$store.state.error;
     // }
   },
   methods: {
