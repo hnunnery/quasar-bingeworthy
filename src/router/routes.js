@@ -3,20 +3,21 @@ const routes = [
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/Index.vue") },
+      { path: "", name: "Home", component: () => import("pages/Index.vue") },
       { path: "signin", component: () => import("pages/SignIn.vue") },
       { path: "signup", component: () => import("pages/SignUp.vue") },
       { path: "ratings", component: () => import("pages/Ratings.vue") },
       { path: "recent", component: () => import("pages/Recent.vue") },
-    ],
-  },
+      { path: "show", component: () => import("pages/Show.vue"), props: true }
+    ]
+  }
 ];
 
 // Always leave this as last one
 if (process.env.MODE !== "ssr") {
   routes.push({
     path: "*",
-    component: () => import("pages/Error404.vue"),
+    component: () => import("pages/Error404.vue")
   });
 }
 

@@ -20,6 +20,14 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered :width="200">
       <q-list class="q-py-md">
+        <div class="flex flex-center full-width q-my-md">
+          <q-img
+            src="https://res.cloudinary.com/missionwebdev/image/upload/c_scale,f_auto,w_70/v1586238319/BingeWorthy/logo-blue.png"
+            spinner-color="primary"
+            style="width: 70px"
+          />
+        </div>
+
         <!-- <q-item
           clickable
           @click="
@@ -62,7 +70,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item to="/">
+        <q-item :to="{ name: 'Home' }" active-class="none">
           <q-item-section avatar>
             <q-icon name="home" />
           </q-item-section>

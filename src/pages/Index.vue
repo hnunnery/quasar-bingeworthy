@@ -31,7 +31,11 @@
                   />
                 </q-item-label>
                 <q-item-label class="text-subtitle1 q-pr-xs">
-                  ({{ rating.ratings.length }}) &nbsp;&nbsp;{{
+                  <span
+                    class="caption"
+                    style="font-size: .9em;"
+                  >{{ rating.ratings.length }} Ratings&nbsp;</span>
+                  {{
                   rating.roundedRating
                   }}
                 </q-item-label>
@@ -44,8 +48,8 @@
                   <div class="col-7">
                     <q-btn
                       flat
-                      clickable
-                      @click="setSearch(rating.name)"
+                      to="show"
+                      @click="sendShowName(rating.name)"
                       label="See Ratings for this Show"
                       class="text-capitalize"
                     ></q-btn>
@@ -67,7 +71,7 @@
 
 <script>
 export default {
-  name: "PageIndex",
+  name: "Home",
   computed: {
     masterRatings() {
       return this.$store.state.store.masterRatings;
@@ -77,6 +81,9 @@ export default {
     }
   },
   methods: {
+    sendShowName(showName) {
+      this.$store.commit("store/setShowName", showName);
+    },
     setSearch(myVar) {
       console.log(myVar);
     }

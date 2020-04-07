@@ -6,12 +6,11 @@ const state = () => ({
   masterRatings: [],
   userRatings: [],
   recentRatings: [],
+  showName: "",
   names: [],
   platforms: [],
   error: null,
-  searchBar: false,
-  message: "",
-  success: false
+  searchBar: false
 });
 
 // MUTATIONS
@@ -28,25 +27,18 @@ const mutations = {
   setUserRatings(state, payload) {
     state.userRatings = payload;
   },
+  setShowName(state, payload) {
+    state.showName = payload;
+  },
   setRecentRatings(state, payload) {
     state.recentRatings = payload;
   },
   addRating(state, payload) {
     state.ratings.push(payload);
     state.ratings.sort((a, b) => (a.rating < b.rating ? 1 : -1));
-    state.message = "Added!";
-    state.success = true;
-    setTimeout(() => {
-      state.success = false;
-    }, 1000);
   },
   deleteRating(state, payload) {
     state.ratings = state.ratings.filter(rating => rating.id !== payload);
-    state.message = "Deleted!";
-    state.success = true;
-    setTimeout(() => {
-      state.success = false;
-    }, 1000);
   },
   updateRating(state, payload) {
     state.ratings.forEach(rating => {
@@ -58,11 +50,6 @@ const mutations = {
       }
     });
     state.ratings.sort((a, b) => (a.rating < b.rating ? 1 : -1));
-    state.message = "Updated!";
-    state.success = true;
-    setTimeout(() => {
-      state.success = false;
-    }, 1000);
   },
   clearRatings(state) {
     state.ratings = [];
@@ -82,18 +69,6 @@ const mutations = {
   },
   updateUserName(state, payload) {
     state.user.name = payload;
-    state.message = "Updated!";
-    state.success = true;
-    setTimeout(() => {
-      state.success = false;
-    }, 1000);
-  },
-  passwordReset(state, payload) {
-    state.message = `Email sent to ${payload}`;
-    state.success = true;
-    setTimeout(() => {
-      state.success = false;
-    }, 2000);
   }
 };
 
@@ -101,22 +76,41 @@ const mutations = {
 
 const actions = {
   loadRatings({ commit, dispatch }) {
-    commit("clearRatings");
+    let ratings = [];
     db.collection("show")
       .orderBy("rating", "desc")
-      .get()
-      .then(querySnapshot => {
-        let ratings = [];
-        querySnapshot.forEach(doc => {
-          let rating = doc.data();
-          rating.id = doc.id;
-          ratings.push(rating);
+      .onSnapshot(querySnapshot => {
+        let changes = querySnapshot.docChanges();
+        changes.forEach(change => {
+          if (change.type == "added") {
+            let rating = change.doc.data();
+            rating.id = change.doc.id;
+            ratings.push(rating);
+            commit("setLoadedRatings", ratings);
+            dispatch("createMasterRatings");
+            dispatch("createUserRatings");
+            dispatch("createRecentRatings");
+          } else if (change.type == "removed") {
+            commit("deleteRating", change.doc.id);
+            dispatch("createMasterRatings");
+            dispatch("createUserRatings");
+            dispatch("createRecentRatings");
+          }
         });
-        commit("setLoadedRatings", ratings);
-        dispatch("createMasterRatings");
-        dispatch("createUserRatings");
-        dispatch("createRecentRatings");
       });
+    // .get()
+    // .then(querySnapshot => {
+    //   let ratings = [];
+    //   querySnapshot.forEach(doc => {
+    //     let rating = doc.data();
+    //     rating.id = doc.id;
+    //     ratings.push(rating);
+    //   });
+    //   commit("setLoadedRatings", ratings);
+    //   dispatch("createMasterRatings");
+    //   dispatch("createUserRatings");
+    //   dispatch("createRecentRatings");
+    // });
   },
   createMasterRatings({ commit, state }) {
     let tempMaster = [];
@@ -251,12 +245,6 @@ const actions = {
 const getters = {
   error(state) {
     return state.error;
-  },
-  fetchMessage(state) {
-    return state.message;
-  },
-  fetchSuccess(state) {
-    return state.success;
   }
 };
 
