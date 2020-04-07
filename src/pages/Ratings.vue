@@ -20,8 +20,7 @@
               <q-item-label>
                 <q-rating
                   v-model="rating.rating"
-                  max="5"
-                  size="1.6em"
+                  size="1.8em"
                   color="secondary"
                   icon="star_border"
                   icon-selected="star"
@@ -52,11 +51,6 @@ export default {
     },
     loading() {
       return this.userRatings.length < 1;
-    }
-  },
-  methods: {
-    setSearch(myVar) {
-      console.log(myVar);
     }
   }
 };

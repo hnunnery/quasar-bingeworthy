@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page>
     <q-list>
       <div class="row justify-center align-center q-py-md full-width">
         <div class="col-12 col-sm-6 col-lg-4" v-for="(rating, index) in showRatings" :key="index">
@@ -19,8 +19,7 @@
               <q-item-label>
                 <q-rating
                   v-model="rating.rating"
-                  max="5"
-                  size="1.6em"
+                  size="1.8em"
                   color="secondary"
                   icon="star_border"
                   icon-selected="star"
