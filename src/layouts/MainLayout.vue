@@ -15,7 +15,7 @@
       <q-list class="q-py-md">
         <div class="flex flex-center full-width q-my-md">
           <q-img
-            src="https://res.cloudinary.com/missionwebdev/image/upload/c_scale,f_auto,w_70/v1586238319/BingeWorthy/logo-blue.png"
+            src="https://res.cloudinary.com/missionwebdev/image/upload/c_scale,f_auto,w_70/v1586282035/BingeWorthy/garnet-gold.png"
             spinner-color="primary"
             style="width: 70px"
           />
