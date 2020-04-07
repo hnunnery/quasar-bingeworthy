@@ -13,7 +13,7 @@
               <q-item-section
                 side
                 class="text-secondary text-center"
-                style="font-size: 1.6em; margin: 0px -5px;"
+                style="font-size: 1.6em; margin: 0px -8px;"
               >{{ rating.rank }}</q-item-section>
 
               <q-item-section>
@@ -23,7 +23,7 @@
 
               <q-space />
 
-              <q-item-section top side style="margin:0px -5px 0px -16px;">
+              <q-item-section top side style="margin: 0px -8px 0px -16px;">
                 <q-item-label>
                   <q-rating
                     v-model="rating.roundedRating"

@@ -4,10 +4,11 @@
       <q-toolbar style="min-height: 42px;">
         <q-btn flat round icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen" />
 
-        <q-toolbar-title
-          class="text-weight-bold text-italic"
-          style="letter-spacing: -1px;"
-        >BingeWorthy</q-toolbar-title>
+        <q-toolbar-title class="text-weight-bold text-italic" style="letter-spacing: -1px;">
+          <router-link to="/" style="text-decoration: none !important; color: inherit;">BingeWorthy</router-link>
+        </q-toolbar-title>
+
+        <div>{{ userName }}</div>
       </q-toolbar>
     </q-header>
 
@@ -90,7 +91,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item class="absolute-bottom q-mb-md">
+        <q-item class="absolute-bottom q-mb-xl">
           <q-item-section avatar class="q-mx-auto">
             <q-btn-toggle
               v-model="dark"
@@ -131,6 +132,7 @@ export default {
   data() {
     return {
       dark: true,
+      userName: "",
       searchBar: false,
       leftDrawerOpen: false
     };
@@ -153,6 +155,11 @@ export default {
     },
     userDark() {
       return this.$store.state.store.userDark;
+    },
+    userHasName() {
+      if (this.userAuth) {
+        return this.$store.state.store.user.name;
+      }
     }
   },
   watch: {
@@ -163,6 +170,9 @@ export default {
     userDark() {
       this.$q.dark.set(this.userDark);
       this.dark = this.userDark;
+    },
+    userHasName() {
+      this.userName = this.userHasName;
     },
     searchBar() {
       this.$store.commit("store/searchBarToggle");
