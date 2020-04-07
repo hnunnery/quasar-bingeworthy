@@ -2,13 +2,17 @@
   <q-page class="flex flex-center">
     <q-spinner-gears color="primary" size="7em" v-if="loading" />
     <q-list v-else>
-      <div class="row justify-center align-center q-py-md full-width">
-        <div class="col-12 col-sm-6 col-lg-4" v-for="(rating, index) in masterRatings" :key="index">
-          <q-expansion-item expand-icon-class="hidden">
+      <div class="row justify-center align-center q-py-md q-px-none full-width">
+        <div
+          class="col-12 col-sm-6 col-lg-4 q-px-none"
+          v-for="(rating, index) in masterRatings"
+          :key="index"
+        >
+          <q-expansion-item class="q-px-none" expand-icon-class="hidden">
             <template v-slot:header>
               <q-item-section>
                 <q-item-label class="text-h6">{{ rating.name }}</q-item-label>
-                <q-item-label class="text-subtitle1 text-grey-7">
+                <q-item-label class="text-subtitle2 text-grey-7">
                   {{
                   rating.platform
                   }}
@@ -22,19 +26,16 @@
                   <q-rating
                     v-model="rating.roundedRating"
                     max="5"
-                    size="1.6em"
-                    color="primary"
+                    size="1.8em"
+                    color="secondary"
                     icon="star_border"
                     icon-selected="star"
                     icon-half="star_half"
                     readonly
                   />
                 </q-item-label>
-                <q-item-label class="text-subtitle1 q-pr-xs">
-                  <span
-                    class="caption"
-                    style="font-size: .9em;"
-                  >{{ rating.ratings.length }} Ratings&nbsp;</span>
+                <q-item-label class="text-overline q-pr-xs q-mt-xs">
+                  <span class="text-weight-regular">{{ rating.ratings.length }} Ratings -</span>
                   {{
                   rating.roundedRating
                   }}
@@ -62,7 +63,7 @@
             </q-card>
           </q-expansion-item>
 
-          <q-separator spaced inset />
+          <q-separator spaced />
         </div>
       </div>
     </q-list>

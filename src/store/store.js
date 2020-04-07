@@ -98,19 +98,6 @@ const actions = {
           }
         });
       });
-    // .get()
-    // .then(querySnapshot => {
-    //   let ratings = [];
-    //   querySnapshot.forEach(doc => {
-    //     let rating = doc.data();
-    //     rating.id = doc.id;
-    //     ratings.push(rating);
-    //   });
-    //   commit("setLoadedRatings", ratings);
-    //   dispatch("createMasterRatings");
-    //   dispatch("createUserRatings");
-    //   dispatch("createRecentRatings");
-    // });
   },
   createMasterRatings({ commit, state }) {
     let tempMaster = [];
@@ -147,7 +134,7 @@ const actions = {
     master.sort((a, b) => (a.averageRating < b.averageRating ? 1 : -1));
     master.forEach(rating => {
       rating.rank = master.indexOf(rating) + 1;
-      rating.roundedRating = parseFloat(rating.averageRating.toFixed(2));
+      rating.roundedRating = parseFloat(rating.averageRating).toFixed(2);
     });
     // ROUNDING DOWN TO NEAREST .5 TO CONTROL VUETIFY RATING COMPONENT
     master.forEach(rating => {
@@ -170,13 +157,22 @@ const actions = {
       commit("setUserRatings", newList);
     }
   },
-  createRecentRatings({ commit, state }) {
-    const newList = state.ratings.sort((ratingA, ratingB) =>
-      ratingA.date > ratingB.date ? -1 : 1
-    );
+  createRecentRatings({ commit }) {
+    let ratings = [];
+    db.collection("show")
+      .orderBy("date", "desc")
+      .limit(30)
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          let rating = doc.data();
+          rating.id = doc.id;
+          ratings.push(rating);
+        });
+      });
 
     // COMMIT TO MUTATION AND STATE
-    commit("setRecentRatings", newList);
+    commit("setRecentRatings", ratings);
   },
   // USER HANDLING
   signUserUp({ commit }, payload) {

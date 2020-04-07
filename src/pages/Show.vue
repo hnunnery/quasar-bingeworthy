@@ -21,7 +21,7 @@
                   v-model="rating.rating"
                   max="5"
                   size="1.6em"
-                  color="primary"
+                  color="secondary"
                   icon="star_border"
                   icon-selected="star"
                   icon-half="star_half"
@@ -35,7 +35,7 @@
               </q-item-label>
             </q-item-section>
           </q-item>
-          <q-separator spaced inset />
+          <q-separator spaced />
         </div>
       </div>
     </q-list>

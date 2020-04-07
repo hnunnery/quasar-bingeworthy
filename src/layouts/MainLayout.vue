@@ -1,18 +1,11 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
+      <q-toolbar style="min-height: 42px;">
+        <q-btn flat round icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen" />
 
         <q-toolbar-title
-          class="text-weight-medium text-italic"
+          class="text-weight-bold text-italic"
           style="letter-spacing: -1px;"
         >BingeWorthy</q-toolbar-title>
       </q-toolbar>
@@ -43,7 +36,34 @@
           </q-item-section>
         </q-item>-->
 
-        <q-item to="/signin" v-show="!userAuth">
+        <q-item :to="{ name: 'Home' }" active-class="none" active-color="secondary">
+          <q-item-section avatar>
+            <q-icon name="home" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>All Ratings</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item to="/ratings" v-show="userAuth" active-color="secondary">
+          <q-item-section avatar>
+            <q-icon name="star" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>My Ratings</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item to="/recent" active-color="secondary">
+          <q-item-section avatar>
+            <q-icon name="access_time" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Recent Ratings</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item to="/signin" v-show="!userAuth" active-color="secondary">
           <q-item-section avatar>
             <q-icon name="how_to_reg" />
           </q-item-section>
@@ -52,7 +72,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item to="/signup" v-show="!userAuth">
+        <q-item to="/signup" v-show="!userAuth" active-color="secondary">
           <q-item-section avatar>
             <q-icon name="person_add" />
           </q-item-section>
@@ -67,33 +87,6 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Sign Out</q-item-label>
-          </q-item-section>
-        </q-item>
-
-        <q-item :to="{ name: 'Home' }" active-class="none">
-          <q-item-section avatar>
-            <q-icon name="home" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>All Ratings</q-item-label>
-          </q-item-section>
-        </q-item>
-
-        <q-item to="/ratings" v-show="userAuth">
-          <q-item-section avatar>
-            <q-icon name="star" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>My Ratings</q-item-label>
-          </q-item-section>
-        </q-item>
-
-        <q-item to="/recent">
-          <q-item-section avatar>
-            <q-icon name="access_time" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Recent Ratings</q-item-label>
           </q-item-section>
         </q-item>
 
