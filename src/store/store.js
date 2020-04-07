@@ -4,6 +4,7 @@ const state = () => ({
   user: null,
   ratings: [],
   masterRatings: [],
+  userRatings: [],
   names: [],
   platforms: [],
   error: null,
@@ -19,6 +20,12 @@ const mutations = {
     state.ratings = payload;
     state.names = state.ratings.map(rating => rating.name);
     state.platforms = state.ratings.map(rating => rating.platform);
+  },
+  setMasterRatings(state, payload) {
+    state.masterRatings = payload;
+  },
+  setUserRatings(state, payload) {
+    state.userRatings = payload;
   },
   addRating(state, payload) {
     state.ratings.push(payload);
@@ -55,9 +62,6 @@ const mutations = {
   },
   clearRatings(state) {
     state.ratings = [];
-  },
-  setMasterRatings(state, payload) {
-    state.masterRatings = payload;
   },
   setError(state, payload) {
     state.error = payload;
@@ -106,6 +110,7 @@ const actions = {
         });
         commit("setLoadedRatings", ratings);
         dispatch("createMasterRatings");
+        dispatch("createUserRatings");
       });
   },
   createMasterRatings({ commit, state }) {
@@ -152,6 +157,17 @@ const actions = {
 
     // COMMIT TO MUTATION AND STATE
     commit("setMasterRatings", master);
+  },
+  createUserRatings({ commit, state }) {
+    const newList = [];
+    state.ratings.forEach(rating => {
+      if (rating.userId === state.user.id) {
+        newList.push(rating);
+      }
+    });
+
+    // COMMIT TO MUTATION AND STATE
+    commit("setUserRatings", newList);
   },
   // USER HANDLING
   signUserUp({ commit }, payload) {
@@ -219,18 +235,6 @@ const actions = {
 const getters = {
   masterRatings(state) {
     return state.masterRatings;
-  },
-  ratingsChange(state) {
-    return state.ratings;
-  },
-  userRatings(state) {
-    let newList = [];
-    state.ratings.forEach(rating => {
-      if (rating.userId === state.user.id) {
-        newList.push(rating);
-      }
-    });
-    return newList;
   },
   error(state) {
     return state.error;
