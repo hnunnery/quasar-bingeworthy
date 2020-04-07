@@ -37,7 +37,7 @@
                 <q-item-label class="text-overline q-pr-xs q-mt-xs">
                   <span class="text-weight-regular">{{ rating.ratings.length }} Ratings -</span>
                   {{
-                  rating.roundedRating
+                  rating.roundedRating.toFixed(2)
                   }}
                 </q-item-label>
               </q-item-section>

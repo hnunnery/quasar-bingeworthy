@@ -2,6 +2,7 @@ import { db, auth } from "boot/firebase";
 
 const state = () => ({
   user: null,
+  userDark: true,
   ratings: [],
   masterRatings: [],
   userRatings: [],
@@ -66,6 +67,9 @@ const mutations = {
   // USER HANDLING
   setUser(state, payload) {
     state.user = payload;
+  },
+  setUserDark(state, payload) {
+    state.userDark = payload;
   },
   updateUserName(state, payload) {
     state.user.name = payload;
@@ -134,7 +138,7 @@ const actions = {
     master.sort((a, b) => (a.averageRating < b.averageRating ? 1 : -1));
     master.forEach(rating => {
       rating.rank = master.indexOf(rating) + 1;
-      rating.roundedRating = parseFloat(rating.averageRating).toFixed(2);
+      rating.roundedRating = parseFloat(rating.averageRating.toFixed(2));
     });
     // ROUNDING DOWN TO NEAREST .5 TO CONTROL VUETIFY RATING COMPONENT
     master.forEach(rating => {
@@ -209,6 +213,12 @@ const actions = {
     } else {
       this.$router.push("/");
     }
+    db.collection("users")
+      .doc(payload.uid)
+      .get()
+      .then(querySnapshot => {
+        commit("setUserDark", querySnapshot.data().dark);
+      });
     commit("setUser", {
       id: payload.uid,
       name: payload.displayName
@@ -229,6 +239,17 @@ const actions = {
       .catch(error => {
         commit("setError", error);
         console.log(error);
+      });
+  },
+  saveUserDark({ state }, payload) {
+    let userId = state.user.id;
+    db.collection("users")
+      .doc(userId)
+      .set({
+        dark: payload
+      })
+      .then(docRef => {
+        console.log(`Dark Mode set to ${payload}`);
       });
   },
   logout({ commit }) {

@@ -90,12 +90,28 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable @click="darkToggle">
-          <q-item-section avatar>
-            <q-icon name="brightness_3" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Dark Mode</q-item-label>
+        <q-item class="absolute-bottom q-mb-md">
+          <q-item-section avatar class="q-mx-auto">
+            <q-btn-toggle
+              v-model="dark"
+              push
+              :options="[
+          {value: false, slot: 'one'},
+          {value: true, slot: 'two'}
+        ]"
+            >
+              <template v-slot:one>
+                <div class="row items-center no-wrap">
+                  <q-icon name="brightness_5" />
+                </div>
+              </template>
+
+              <template v-slot:two>
+                <div class="row items-center no-wrap">
+                  <q-icon name="brightness_3" />
+                </div>
+              </template>
+            </q-btn-toggle>
           </q-item-section>
         </q-item>
       </q-list>
@@ -114,6 +130,7 @@ export default {
   name: "MainLayout",
   data() {
     return {
+      dark: true,
       searchBar: false,
       leftDrawerOpen: false
     };
@@ -125,9 +142,6 @@ export default {
         this.search = "";
         this.leftDrawerOpen = !this.leftDrawerOpen;
       }
-    },
-    darkToggle() {
-      this.$q.dark.toggle();
     }
   },
   computed: {
@@ -136,14 +150,26 @@ export default {
         this.$store.state.store.user !== null &&
         this.$store.state.store.user !== undefined
       );
+    },
+    userDark() {
+      return this.$store.state.store.userDark;
     }
   },
   watch: {
+    dark() {
+      this.$q.dark.set(this.dark);
+      this.$store.dispatch("store/saveUserDark", this.dark);
+    },
+    userDark() {
+      this.$q.dark.set(this.userDark);
+      this.dark = this.userDark;
+    },
     searchBar() {
       this.$store.commit("store/searchBarToggle");
     }
   },
   created() {
+    this.$q.dark.set(true);
     // fetching events from firebase
     this.$store.dispatch("store/loadRatings");
     // log returning users in automatically
