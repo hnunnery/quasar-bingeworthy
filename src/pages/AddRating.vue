@@ -6,7 +6,7 @@
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        <div class="q-mb-md flex flex-center">
+        <div class="q-mb-lg flex flex-center">
           <q-select
             v-model="name"
             @input-value="setName"
@@ -24,7 +24,7 @@
             behavior="menu"
           ></q-select>
         </div>
-        <div class="q-my-md flex flex-center">
+        <div class="q-mb-lg flex flex-center">
           <q-select
             v-model="platform"
             @input-value="setPlatform"
@@ -42,11 +42,11 @@
           ></q-select>
         </div>
         <div class="q-mt-lg text-h3 text-secondary">{{ rating }}/5</div>
-        <div class="q-mt-sm q-mb-md">
+        <div class="q-mt-sm q-mb-sm">
           <q-rating
             v-model="rawRating"
             max="10"
-            size="1.6em"
+            size="2em"
             color="secondary"
             icon="star_border"
             icon-selected="star"
@@ -54,9 +54,16 @@
           ></q-rating>
         </div>
       </q-card-section>
-      <q-card-actions align="center" class="q-mb-md">
-        <q-btn flat class="q-mx-sm" label="Cancel" @click="resetForm" />
-        <q-btn color="primary" class="q-mx-sm" label="Add Rating" @click="addRating" />
+      <q-card-actions align="center" class="q-mb-lg">
+        <!-- <q-btn flat class="q-mx-sm" label="Cancel" @click="resetForm" /> -->
+        <q-btn
+          ripple
+          color="primary"
+          size="1.2em"
+          class="q-mx-sm q-px-sm text-capitalize"
+          label="Add Rating"
+          @click="addRating"
+        />
       </q-card-actions>
     </q-card>
   </div>
@@ -134,7 +141,12 @@ export default {
             this.name = "";
             this.platform = "";
             this.rating = 0;
-            this.dialog = false;
+            this.rawRating = 0;
+            this.$q.notify({
+              type: "positive",
+              message: "Rating Added!",
+              icon: "check_circle_outline"
+            });
           });
       } else if (this.duplicate) {
         alert(

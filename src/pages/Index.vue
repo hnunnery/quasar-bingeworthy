@@ -52,11 +52,11 @@
                       flat
                       to="show"
                       @click="sendShowName(rating.name)"
-                      label="Ratings for this Show"
-                      class="text-capitalize text-bold text-subtitle1 text-primary q-px-none"
+                      label="See Individual Ratings"
+                      class="text-capitalize text-bold text-subtitle1 q-px-none"
                     ></q-btn>
                   </div>
-                  <RateThis />
+                  <RateThis :rateName="rating.name" :ratePlatform="rating.platform" />
                 </div>
               </q-card-section>
             </q-card>

@@ -6,54 +6,19 @@
       <q-btn color="primary" label="Rate This" class="text-capitalize" @click="dialog=true" />
     </div>
     <!-- button for not auth users -->
-    <q-dialog v-model="dialog" persistent transition-show="scale" transition-hide="scale">
-      <q-card class="text-center" style="width: 80vw; max-width: 500px;">
+    <q-dialog v-model="dialog" transition-show="scale" transition-hide="scale">
+      <q-card class="text-center flex flex-center" style="width: 100%; max-width: 500px;">
         <q-card-section>
-          <div class="text-h6 q-mt-sm q-pb-none">Add Your Rating</div>
+          <div class="text-h4 text-italic text-secondary q-mt-md q-pb-none">{{ rateName }}</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <div class="q-mb-md">
-            <q-select
-              v-model="name"
-              @input-value="setName"
-              label="Name of Show"
-              :options="this.uniqueNames"
-              clearable
-              options-dense
-              use-input
-              hide-selected
-              fill-input
-              hide-dropdown-icon
-              input-debounce="0"
-              new-value-mode="add"
-              style="width: 250px"
-              behavior="menu"
-            ></q-select>
-          </div>
-          <div class="q-my-md">
-            <q-select
-              v-model="platform"
-              @input-value="setPlatform"
-              label="Platform"
-              :options="this.uniquePlatforms"
-              clearable
-              options-dense
-              use-input
-              hide-selected
-              fill-input
-              hide-dropdown-icon
-              input-debounce="0"
-              style="width: 250px"
-              behavior="menu"
-            ></q-select>
-          </div>
-          <div class="q-mt-lg text-h3 text-secondary">{{ rating }}/5</div>
-          <div class="q-mt-sm q-mb-md">
+          <div class="q-mt-sm text-h3 text-secondary">{{ rating }}/5</div>
+          <div class="q-mt-sm q-mb-sm">
             <q-rating
               v-model="rawRating"
               max="10"
-              size="1.6em"
+              size="1.9em"
               color="secondary"
               icon="star_border"
               icon-selected="star"
@@ -61,9 +26,15 @@
             ></q-rating>
           </div>
         </q-card-section>
-        <q-card-actions align="right" class="q-mb-md">
-          <q-btn flat class="q-mx-sm" label="Cancel" @click="resetForm" />
-          <q-btn color="primary" class="q-mx-sm" label="Add Rating" @click="addRating" />
+        <q-card-actions align="center" class="q-mb-lg">
+          <q-btn
+            ripple
+            color="primary"
+            size="1.2em"
+            class="q-mx-sm q-px-sm text-capitalize"
+            label="Add Rating"
+            @click="addRating"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -75,11 +46,12 @@
 import { db } from "boot/firebase";
 
 export default {
+  props: ["rateName", "ratePlatform"],
   data() {
     return {
-      name: "",
+      name: this.rateName,
+      platform: this.ratePlatform,
       rating: 0,
-      platform: "",
       user: this.$store.state.store.user.name,
       search: "",
       rawRating: 0,
@@ -144,6 +116,11 @@ export default {
             this.platform = "";
             this.rating = 0;
             this.dialog = false;
+            this.$q.notify({
+              type: "positive",
+              message: "Rating Added!",
+              icon: "check_circle_outline"
+            });
           });
       } else if (this.duplicate) {
         alert(

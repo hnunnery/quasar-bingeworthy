@@ -12,7 +12,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered :width="200">
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered :width="185">
       <q-list class="q-py-md">
         <div class="flex flex-center full-width q-my-md">
           <q-img
@@ -22,7 +22,7 @@
           />
         </div>
 
-        <!-- <q-item
+        <!-- <q-item class="text-subtitle1 q-mb-sm"
           clickable
           @click="
             searchBar = !searchBar;
@@ -37,7 +37,12 @@
           </q-item-section>
         </q-item>-->
 
-        <q-item :to="{ name: 'Home' }" active-class="none" active-color="secondary">
+        <q-item
+          class="text-subtitle1 q-mb-sm"
+          :to="{ name: 'Home' }"
+          active-class="none"
+          active-color="secondary"
+        >
           <q-item-section avatar>
             <q-icon name="home" />
           </q-item-section>
@@ -46,7 +51,12 @@
           </q-item-section>
         </q-item>
 
-        <q-item to="/ratings" v-show="userAuth" active-color="secondary">
+        <q-item
+          class="text-subtitle1 q-mb-sm"
+          to="/ratings"
+          v-show="userAuth"
+          active-color="secondary"
+        >
           <q-item-section avatar>
             <q-icon name="star" />
           </q-item-section>
@@ -55,25 +65,35 @@
           </q-item-section>
         </q-item>
 
-        <q-item to="/recent" active-color="secondary">
+        <q-item class="text-subtitle1 q-mb-sm" to="/recent" active-color="secondary">
           <q-item-section avatar>
             <q-icon name="access_time" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Recent Ratings</q-item-label>
+            <q-item-label>Most Recent</q-item-label>
           </q-item-section>
         </q-item>
 
-        <q-item to="/addrating" v-show="userAuth" active-color="secondary">
+        <q-item
+          class="text-subtitle1 q-mb-sm"
+          to="/addrating"
+          v-show="userAuth"
+          active-color="secondary"
+        >
           <q-item-section avatar>
             <q-icon name="add_circle_outline" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Add A Rating</q-item-label>
+            <q-item-label>Add Rating</q-item-label>
           </q-item-section>
         </q-item>
 
-        <q-item to="/signin" v-show="!userAuth" active-color="secondary">
+        <q-item
+          class="text-subtitle1 q-mb-sm"
+          to="/signin"
+          v-show="!userAuth"
+          active-color="secondary"
+        >
           <q-item-section avatar>
             <q-icon name="how_to_reg" />
           </q-item-section>
@@ -82,7 +102,12 @@
           </q-item-section>
         </q-item>
 
-        <q-item to="/signup" v-show="!userAuth" active-color="secondary">
+        <q-item
+          class="text-subtitle1 q-mb-sm"
+          to="/signup"
+          v-show="!userAuth"
+          active-color="secondary"
+        >
           <q-item-section avatar>
             <q-icon name="person_add" />
           </q-item-section>
@@ -91,7 +116,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable @click="onLogout" v-show="userAuth">
+        <q-item class="text-subtitle1 q-mb-sm" clickable @click="onLogout" v-show="userAuth">
           <q-item-section avatar>
             <q-icon name="directions_walk" />
           </q-item-section>
