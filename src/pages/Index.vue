@@ -46,12 +46,12 @@
               <q-card-section class="q-py-sm q-px-none">
                 <div class="row justify-center align-center">
                   <div class="col-7 flex flex-center">
-                    <router-link
-                      to="show"
+                    <span
+                      clickable
                       @click="sendShowName(rating.name)"
                       class="text-bold text-subtitle1"
                       style="text-decoration: none; color: inherit;"
-                    >See Individual Ratings</router-link>
+                    >See Individual Ratings</span>
                   </div>
                   <q-space />
                   <RateThis :rateName="rating.name" :ratePlatform="rating.platform" />
@@ -86,6 +86,7 @@ export default {
   methods: {
     sendShowName(showName) {
       this.$store.commit("store/setShowName", showName);
+      this.$router.push("show");
     }
   }
 };
