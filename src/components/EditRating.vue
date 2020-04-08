@@ -11,12 +11,14 @@
     </div>
 
     <q-dialog v-model="dialog" transition-show="scale" transition-hide="scale">
-      <q-card class="text-center flex flex-center" style="width: 100%; max-width: 500px;">
-        <q-card-section>
-          <div class="text-h4 text-italic text-secondary q-mt-md q-pb-none">Edit {{ originalName }}</div>
+      <q-card class="text-center flex flex-center" style="width: 100%; max-width: 450px;">
+        <q-card-section class="full-width">
+          <div
+            :class="{ 'text-h4': true, 'text-italic': true, 'text-secondary': darkMode,  'q-mt-md': true, 'q-mb-sm': true }"
+          >Edit {{ originalName }}</div>
         </q-card-section>
 
-        <q-card-section class="q-pt-none">
+        <q-card-section class="full-width q-pt-none" style="max-width: 350px;">
           <div class="q-mb-lg flex flex-center">
             <q-select
               v-model="updatedName"
@@ -52,7 +54,9 @@
               behavior="menu"
             ></q-select>
           </div>
-          <div class="q-mt-lg text-h3 text-secondary">{{ updatedRating }}/5</div>
+          <div
+            :class="{ 'q-mt-lg': true, 'text-h3': true, 'text-bold': !darkMode, 'text-secondary': darkMode }"
+          >{{ updatedRating }}/5</div>
           <div class="q-mt-sm q-mb-sm">
             <q-rating
               v-model="rawRating"
@@ -65,7 +69,7 @@
             ></q-rating>
           </div>
         </q-card-section>
-        <q-card-actions align="center" class="q-mb-lg">
+        <q-card-section align="center" class="q-mb-lg">
           <q-btn
             ripple
             color="primary"
@@ -74,7 +78,7 @@
             label="Update Rating"
             @click="updateRating"
           />
-        </q-card-actions>
+        </q-card-section>
       </q-card>
     </q-dialog>
   </div>
@@ -121,6 +125,9 @@ export default {
     },
     updatedRating() {
       return this.rawRating / 2;
+    },
+    darkMode() {
+      return this.$q.dark.isActive;
     }
   },
   methods: {

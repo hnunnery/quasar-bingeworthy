@@ -25,14 +25,18 @@
     </div>
     <!-- button for not auth users -->
     <q-dialog v-model="dialog" transition-show="scale" transition-hide="scale">
-      <q-card class="text-center flex flex-center" style="width: 100%; max-width: 500px;">
-        <q-card-section>
-          <div class="text-h4 text-italic text-secondary q-mt-md q-pb-none">{{ rateName }}</div>
+      <q-card class="text-center flex flex-center" style="width: 100%; max-width: 450px;">
+        <q-card-section class="full-width">
+          <div
+            :class="{ 'text-h4': true, 'text-italic': true, 'text-secondary': darkMode,  'q-mt-md': true, 'q-mb-sm': true }"
+          >{{ rateName }}</div>
         </q-card-section>
 
-        <q-card-section class="q-pt-none">
-          <div class="q-mt-sm text-h3 text-secondary">{{ rating }}/5</div>
-          <div class="q-mt-sm q-mb-sm">
+        <q-card-section class="full-width q-pt-none">
+          <div
+            :class="{ 'q-mt-sm': true, 'text-h3': true, 'text-bold': !darkMode, 'text-secondary': darkMode }"
+          >{{ rating }}/5</div>
+          <div class="q-my-md">
             <q-rating
               v-model="rawRating"
               max="10"
@@ -98,6 +102,9 @@ export default {
     },
     ratings() {
       return this.$store.state.store.ratings;
+    },
+    darkMode() {
+      return this.$q.dark.isActive;
     },
     userRatings() {
       return this.$store.state.store.userRatings;

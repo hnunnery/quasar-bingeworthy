@@ -1,12 +1,14 @@
 <template>
-  <div class="flex flex-center" style="height: 70vh;">
+  <div class="flex flex-center" style="height: 75vh;">
     <q-card class="text-center" style="width: 100%; max-width: 500px;">
-      <q-card-section>
-        <div class="text-h4 text-italic text-secondary q-mt-sm q-pb-none">Add Your Rating</div>
+      <q-card-section class="full-width">
+        <div
+          :class="{ 'text-h4': true, 'text-italic': true, 'text-secondary': darkMode,  'q-mt-md': true, 'q-mb-sm': true }"
+        >Add Your Rating</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        <div class="q-mb-lg flex flex-center">
+        <div class="q-mb-lg q-pb-sm flex flex-center">
           <q-select
             v-model="name"
             @input-value="setName"
@@ -41,8 +43,10 @@
             behavior="menu"
           ></q-select>
         </div>
-        <div class="q-mt-lg text-h3 text-secondary">{{ rating }}/5</div>
-        <div class="q-mt-sm q-mb-sm">
+        <div
+          :class="{ 'q-mt-lg': true, 'q-pt-sm': true, 'text-h3': true, 'text-secondary': darkMode }"
+        >{{ rating }}/5</div>
+        <div class="q-my-md">
           <q-rating
             v-model="rawRating"
             max="10"
@@ -54,8 +58,7 @@
           ></q-rating>
         </div>
       </q-card-section>
-      <q-card-actions align="center" class="q-mb-lg">
-        <!-- <q-btn flat class="q-mx-sm" label="Cancel" @click="resetForm" /> -->
+      <q-card-actions align="center" class="q-mb-lg q-pb-md">
         <q-btn
           ripple
           color="primary"
@@ -109,6 +112,9 @@ export default {
     },
     userRatings() {
       return this.$store.state.store.userRatings;
+    },
+    darkMode() {
+      return this.$q.dark.isActive;
     }
   },
   methods: {
