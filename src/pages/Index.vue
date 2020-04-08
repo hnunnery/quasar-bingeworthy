@@ -56,9 +56,7 @@
                       class="text-capitalize text-bold text-subtitle1 text-primary q-px-none"
                     ></q-btn>
                   </div>
-                  <div class="col-4 text-right q-pr-sm">
-                    <q-btn color="primary" label="Rate This" class="text-capitalize" />
-                  </div>
+                  <RateThis />
                 </div>
               </q-card-section>
             </q-card>
@@ -72,8 +70,13 @@
 </template>
 
 <script>
+import RateThis from "components/RateThis";
+
 export default {
   name: "Home",
+  components: {
+    RateThis
+  },
   computed: {
     masterRatings() {
       return this.$store.state.store.masterRatings;

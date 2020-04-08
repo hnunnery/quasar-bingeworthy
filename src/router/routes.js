@@ -8,7 +8,8 @@ const routes = [
       { path: "signup", component: () => import("pages/SignUp.vue") },
       { path: "ratings", component: () => import("pages/Ratings.vue") },
       { path: "recent", component: () => import("pages/Recent.vue") },
-      { path: "show", component: () => import("pages/Show.vue"), props: true }
+      { path: "show", component: () => import("pages/Show.vue") },
+      { path: "addrating", component: () => import("pages/AddRating.vue") }
     ]
   }
 ];

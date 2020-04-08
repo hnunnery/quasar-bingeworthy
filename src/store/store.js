@@ -93,12 +93,10 @@ const actions = {
             commit("setLoadedRatings", ratings);
             dispatch("createMasterRatings");
             dispatch("createUserRatings");
-            dispatch("createRecentRatings");
           } else if (change.type == "removed") {
             commit("deleteRating", change.doc.id);
             dispatch("createMasterRatings");
             dispatch("createUserRatings");
-            dispatch("createRecentRatings");
           }
         });
       });

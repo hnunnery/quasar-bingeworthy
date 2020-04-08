@@ -64,6 +64,15 @@
           </q-item-section>
         </q-item>
 
+        <q-item to="/addrating" v-show="userAuth" active-color="secondary">
+          <q-item-section avatar>
+            <q-icon name="add_circle_outline" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Add A Rating</q-item-label>
+          </q-item-section>
+        </q-item>
+
         <q-item to="/signin" v-show="!userAuth" active-color="secondary">
           <q-item-section avatar>
             <q-icon name="how_to_reg" />

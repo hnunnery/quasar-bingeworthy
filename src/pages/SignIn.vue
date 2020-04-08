@@ -1,18 +1,10 @@
 <template>
-  <q-page class="flex flex-center">
-    <q-card
-      class="q-ma-sm q-pa-lg text-center"
-      style="width: 100%; max-width: 500px;"
-    >
+  <div class="flex flex-center" style="height: 70vh;">
+    <q-card class="q-ma-sm q-pa-lg text-center" style="width: 100%; max-width: 500px;">
       <form @submit.prevent="onSignIn">
         <h2 class="text-h4 q-my-md">Sign In Here</h2>
         <q-input v-model="email" label="Email" type="email" class="q-my-lg" />
-        <q-input
-          v-model="password"
-          label="Password"
-          type="password"
-          class="q-my-lg"
-        />
+        <q-input v-model="password" label="Password" type="password" class="q-my-lg" />
         <q-btn
           ripple
           type="submit"
@@ -22,16 +14,11 @@
           label="Sign In"
         />
         <div>
-          <q-btn
-            flat
-            to="signup"
-            class="text-capitalize q-mt-sm"
-            label="Create Account Here"
-          />
+          <q-btn flat to="signup" class="text-capitalize q-mt-sm" label="Create Account Here" />
         </div>
       </form>
     </q-card>
-  </q-page>
+  </div>
 </template>
 
 <script>

@@ -1,9 +1,6 @@
 <template>
-  <q-page class="flex flex-center">
-    <q-card
-      class="q-ma-sm q-pa-lg text-center"
-      style="width: 100%; max-width: 500px;"
-    >
+  <div class="flex flex-center" style="height: 70vh;">
+    <q-card class="q-ma-sm q-pa-lg text-center" style="width: 100%; max-width: 500px;">
       <form @submit.prevent="onSignUp">
         <h2 class="text-h4 q-my-md">Sign Up for Account</h2>
         <q-input v-model="displayName" label="Full Name" class="q-my-lg" />
@@ -19,7 +16,7 @@
         />
       </form>
     </q-card>
-  </q-page>
+  </div>
 </template>
 
 <script>
