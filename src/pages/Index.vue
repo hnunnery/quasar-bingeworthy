@@ -47,10 +47,9 @@
                 <div class="row justify-center align-center">
                   <div class="col-7 flex flex-center">
                     <span
-                      clickable
                       @click="sendShowName(rating.name)"
                       class="text-bold text-subtitle1"
-                      style="text-decoration: none; color: inherit;"
+                      style="cursor: pointer;"
                     >See Individual Ratings</span>
                   </div>
                   <q-space />

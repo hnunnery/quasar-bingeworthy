@@ -2,7 +2,7 @@
 <template>
   <div>
     <!-- button for auth users -->
-    <div class="col-5 q-mr-lg">
+    <div class="col-5 q-mr-lg q-px-xs">
       <q-btn
         v-if="userAuth"
         ripple
