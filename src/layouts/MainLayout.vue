@@ -14,11 +14,11 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered :width="217">
       <q-list class="q-py-md q-pl-md">
-        <div class="flex flex-center full-width q-my-md">
+        <div class="flex flex-center full-width q-my-md q-pr-md">
           <q-img
-            src="https://res.cloudinary.com/missionwebdev/image/upload/c_scale,f_auto,w_70/v1586282035/BingeWorthy/garnet-gold.png"
+            src="https://res.cloudinary.com/missionwebdev/image/upload/c_scale,f_auto,w_110/v1586282035/BingeWorthy/garnet-gold.png"
             spinner-color="primary"
-            style="width: 70px"
+            style="width: 110px"
           />
         </div>
 
