@@ -2,8 +2,26 @@
 <template>
   <div>
     <!-- button for auth users -->
-    <div class="col-4 text-right q-pr-sm">
-      <q-btn color="primary" label="Rate This" class="text-capitalize" @click="dialog=true" />
+    <div class="col-5 q-mr-lg">
+      <q-btn
+        v-if="userAuth"
+        ripple
+        color="primary"
+        size="1.15em"
+        label="Rate This"
+        class="text-capitalize q-px-xs"
+        @click="dialog=true"
+      />
+      <!-- if not auth -->
+      <q-btn
+        v-if="!userAuth"
+        ripple
+        color="primary"
+        size="1.15em"
+        label="Rate This"
+        class="text-capitalize q-px-xs"
+        to="/signin"
+      />
     </div>
     <!-- button for not auth users -->
     <q-dialog v-model="dialog" transition-show="scale" transition-hide="scale">
@@ -83,6 +101,9 @@ export default {
     },
     userRatings() {
       return this.$store.state.store.userRatings;
+    },
+    userAuth() {
+      return this.$store.state.store.user;
     }
   },
   methods: {

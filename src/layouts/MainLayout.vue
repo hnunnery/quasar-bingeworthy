@@ -8,12 +8,12 @@
           <router-link to="/" style="text-decoration: none !important; color: inherit;">BingeWorthy</router-link>
         </q-toolbar-title>
 
-        <div>{{ userName }}</div>
+        <div class="q-mr-sm">{{ userName }}</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered :width="185">
-      <q-list class="q-py-md">
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered :width="217">
+      <q-list class="q-py-md q-pl-md">
         <div class="flex flex-center full-width q-my-md">
           <q-img
             src="https://res.cloudinary.com/missionwebdev/image/upload/c_scale,f_auto,w_70/v1586282035/BingeWorthy/garnet-gold.png"
@@ -55,7 +55,7 @@
           class="text-subtitle1 q-mb-sm"
           to="/ratings"
           v-show="userAuth"
-          active-color="secondary"
+          active-class="text-bold"
         >
           <q-item-section avatar>
             <q-icon name="star" />
@@ -65,9 +65,9 @@
           </q-item-section>
         </q-item>
 
-        <q-item class="text-subtitle1 q-mb-sm" to="/recent" active-color="secondary">
+        <q-item class="text-subtitle1 q-mb-sm" to="/recent" active-class="text-bold">
           <q-item-section avatar>
-            <q-icon name="access_time" />
+            <q-icon name="timelapse" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Most Recent</q-item-label>
@@ -77,11 +77,25 @@
         <q-item
           class="text-subtitle1 q-mb-sm"
           to="/addrating"
-          v-show="userAuth"
-          active-color="secondary"
+          v-if="userAuth"
+          active-class="text-bold"
         >
           <q-item-section avatar>
-            <q-icon name="add_circle_outline" />
+            <q-icon name="add_circle" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Add Rating</q-item-label>
+          </q-item-section>
+        </q-item>
+        <!-- Add Rating Button for no userAuth -->
+        <q-item
+          class="text-subtitle1 q-mb-sm"
+          to="/signin"
+          v-if="!userAuth"
+          active-class="text-bold"
+        >
+          <q-item-section avatar>
+            <q-icon name="add_circle" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Add Rating</q-item-label>
@@ -92,7 +106,7 @@
           class="text-subtitle1 q-mb-sm"
           to="/signin"
           v-show="!userAuth"
-          active-color="secondary"
+          active-class="text-bold"
         >
           <q-item-section avatar>
             <q-icon name="how_to_reg" />
@@ -106,7 +120,7 @@
           class="text-subtitle1 q-mb-sm"
           to="/signup"
           v-show="!userAuth"
-          active-color="secondary"
+          active-class="text-bold"
         >
           <q-item-section avatar>
             <q-icon name="person_add" />
@@ -118,7 +132,7 @@
 
         <q-item class="text-subtitle1 q-mb-sm" clickable @click="onLogout" v-show="userAuth">
           <q-item-section avatar>
-            <q-icon name="directions_walk" />
+            <q-icon name="remove_circle" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Sign Out</q-item-label>

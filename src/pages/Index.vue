@@ -10,20 +10,16 @@
         >
           <q-expansion-item expand-icon-class="hidden">
             <template v-slot:header>
-              <q-item-section
-                side
-                class="text-secondary text-center"
-                style="font-size: 1.6em; margin: 0px -7px 0px -9px;"
-              >{{ rating.rank }}</q-item-section>
-
               <q-item-section>
                 <q-item-label class="text-h6">{{ rating.name }}</q-item-label>
-                <q-item-label class="text-subtitle2 text-grey-7">&nbsp;{{ rating.platform }}</q-item-label>
+                <q-item-label
+                  class="text-subtitle1 text-grey-7"
+                >{{ rating.rank }}&nbsp; - &nbsp;{{ rating.platform }}</q-item-label>
               </q-item-section>
 
               <q-space />
 
-              <q-item-section top side style="margin: 0px -9px 0px -16px;">
+              <q-item-section top side>
                 <q-item-label>
                   <q-rating
                     v-model="rating.roundedRating"
@@ -35,8 +31,10 @@
                     readonly
                   />
                 </q-item-label>
-                <q-item-label class="text-overline q-pr-xs q-mt-xs">
-                  <span class="text-weight-regular">{{ rating.ratings.length }} Ratings -</span>
+                <q-item-label class="text-subtitle1 text-bold q-pr-xs q-mt-sm">
+                  <span
+                    class="text-grey-7 text-weight-regular"
+                  >{{ rating.ratings.length }} Ratings -</span>
                   {{
                   rating.roundedRating.toFixed(2)
                   }}
@@ -45,17 +43,17 @@
             </template>
 
             <q-card>
-              <q-card-section>
+              <q-card-section class="q-py-sm q-px-none">
                 <div class="row justify-center align-center">
-                  <div class="col-8">
-                    <q-btn
-                      flat
+                  <div class="col-7 flex flex-center">
+                    <router-link
                       to="show"
                       @click="sendShowName(rating.name)"
-                      label="See Individual Ratings"
-                      class="text-capitalize text-bold text-subtitle1 q-px-none"
-                    ></q-btn>
+                      class="text-bold text-subtitle1"
+                      style="text-decoration: none; color: inherit;"
+                    >See Individual Ratings</router-link>
                   </div>
+                  <q-space />
                   <RateThis :rateName="rating.name" :ratePlatform="rating.platform" />
                 </div>
               </q-card-section>
