@@ -24,7 +24,8 @@
               v-model="updatedName"
               @input-value="setName"
               label="Name of Show"
-              :options="this.uniqueNames"
+              :options="nameOptions"
+              @filter="filterNames"
               clearable
               options-dense
               use-input
@@ -42,7 +43,8 @@
               v-model="updatedPlatform"
               @input-value="setPlatform"
               label="Platform"
-              :options="this.uniquePlatforms"
+              :options="platformOptions"
+              @filter="filterPlatforms"
               clearable
               options-dense
               use-input
@@ -98,7 +100,9 @@ export default {
       updatedUser: this.rating.user,
       ratingId: this.rating.id,
       dialog: false,
-      duplicate: false
+      duplicate: false,
+      nameOptions: this.uniqueNames,
+      platformOptions: this.uniquePlatforms
     };
   },
   computed: {
@@ -184,6 +188,36 @@ export default {
     },
     setPlatform(val) {
       this.updatedPlatform = val;
+    },
+    filterNames(val, update) {
+      if (val === "") {
+        update(() => {
+          this.nameOptions = this.uniqueNames;
+        });
+        return;
+      }
+
+      update(() => {
+        const needle = val.toLowerCase();
+        this.nameOptions = this.uniqueNames.filter(
+          v => v.toLowerCase().indexOf(needle) > -1
+        );
+      });
+    },
+    filterPlatforms(val, update) {
+      if (val === "") {
+        update(() => {
+          this.platformOptions = this.uniquePlatforms;
+        });
+        return;
+      }
+
+      update(() => {
+        const needle = val.toLowerCase();
+        this.platformOptions = this.uniquePlatforms.filter(
+          v => v.toLowerCase().indexOf(needle) > -1
+        );
+      });
     }
   }
 };
