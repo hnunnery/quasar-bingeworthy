@@ -48,12 +48,26 @@
                   <div class="col-7 flex flex-center">
                     <span
                       @click="sendShowName(rating.name)"
-                      class="text-bold text-subtitle1"
+                      :class="{ 'text-bold': true, 'text-subtitle1': true, 'text-secondary': darkMode }"
                       style="cursor: pointer;"
                     >See Individual Ratings</span>
                   </div>
                   <q-space />
-                  <RateThis :rateName="rating.name" :ratePlatform="rating.platform" />
+                  <RateThis
+                    v-if="userAuth"
+                    :rateName="rating.name"
+                    :ratePlatform="rating.platform"
+                  />
+                  <div v-else class="col-5 text-center q-pr-sm">
+                    <q-btn
+                      ripple
+                      to="signin"
+                      color="primary"
+                      size="1.15em"
+                      label="Rate This"
+                      class="text-capitalize q-px-xs"
+                    />
+                  </div>
                 </div>
               </q-card-section>
             </q-card>
@@ -78,8 +92,14 @@ export default {
     masterRatings() {
       return this.$store.state.store.masterRatings;
     },
+    userAuth() {
+      return this.$store.state.store.user;
+    },
     loading() {
       return this.masterRatings.length < 30;
+    },
+    darkMode() {
+      return this.$q.dark.isActive;
     }
   },
   methods: {

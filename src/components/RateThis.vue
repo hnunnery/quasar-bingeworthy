@@ -4,23 +4,12 @@
     <!-- button for auth users -->
     <div class="col-5 q-mr-lg q-px-xs">
       <q-btn
-        v-if="userAuth"
         ripple
         color="primary"
         size="1.15em"
         label="Rate This"
         class="text-capitalize q-px-xs"
         @click="dialog=true"
-      />
-      <!-- if not auth -->
-      <q-btn
-        v-if="!userAuth"
-        ripple
-        color="primary"
-        size="1.15em"
-        label="Rate This"
-        class="text-capitalize q-px-xs"
-        to="/signin"
       />
     </div>
     <!-- button for not auth users -->
