@@ -92,7 +92,6 @@
           class="text-subtitle1 q-mb-sm"
           to="/signin"
           v-if="!userAuth"
-          active-class="text-bold"
         >
           <q-item-section avatar>
             <q-icon name="add_circle" />
