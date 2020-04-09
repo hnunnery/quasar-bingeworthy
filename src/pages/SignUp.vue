@@ -6,6 +6,9 @@
         <q-input v-model="displayName" label="Full Name" class="q-my-lg" />
         <q-input v-model="email" label="Email" class="q-my-lg" />
         <q-input v-model="password" label="Password" class="q-my-lg" />
+        <div v-if="error">
+          <Alert :text="error.message" />
+        </div>
         <q-btn
           ripple
           type="submit"
@@ -20,7 +23,12 @@
 </template>
 
 <script>
+import Alert from "components/Alert";
+
 export default {
+  components: {
+    Alert
+  },
   data() {
     return {
       displayName: "",
@@ -31,10 +39,10 @@ export default {
   computed: {
     user() {
       return this.$store.state.store.user;
+    },
+    error() {
+      return this.$store.state.store.error;
     }
-    // error() {
-    //   return this.$store.state.error;
-    // }
   },
   methods: {
     onSignUp() {
@@ -44,9 +52,6 @@ export default {
         displayName: this.displayName
       });
     }
-    // onDismissed() {
-    //   this.$store.dispatch("clearError");
-    // }
   }
 };
 </script>

@@ -88,11 +88,7 @@
           </q-item-section>
         </q-item>
         <!-- Add Rating Button for no userAuth -->
-        <q-item
-          class="text-subtitle1 q-mb-sm"
-          to="/signin"
-          v-if="!userAuth"
-        >
+        <q-item class="text-subtitle1 q-mb-sm" to="/signin" v-if="!userAuth">
           <q-item-section avatar>
             <q-icon name="add_circle" />
           </q-item-section>

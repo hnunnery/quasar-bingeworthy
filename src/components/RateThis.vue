@@ -22,15 +22,13 @@
         </q-card-section>
 
         <q-card-section class="full-width q-pt-none">
-          <div
-            :class="{ 'q-mt-sm': true, 'text-h3': true, 'text-bold': !darkMode, 'text-secondary': darkMode }"
-          >{{ rating }}/5</div>
+          <div class="q-mt-sm text-h3">{{ rating }}/5</div>
           <div class="q-my-md">
             <q-rating
               v-model="rawRating"
               max="10"
               size="1.9em"
-              color="secondary"
+              :color="starColor"
               icon="star_border"
               icon-selected="star"
               icon-half="star_half"
@@ -94,6 +92,13 @@ export default {
     },
     darkMode() {
       return this.$q.dark.isActive;
+    },
+    starColor() {
+      if (this.darkMode) {
+        return "secondary";
+      } else {
+        return "primary";
+      }
     },
     userRatings() {
       return this.$store.state.store.userRatings;

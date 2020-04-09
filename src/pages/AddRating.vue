@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-center" style="height: 75vh;">
-    <q-card class="text-center" style="width: 100%; max-width: 500px;">
+    <q-card class="q-ma-sm text-center" style="width: 100%; max-width: 500px;">
       <q-card-section class="full-width">
         <div
           :class="{ 'text-h4': true, 'text-italic': true, 'text-secondary': darkMode,  'q-mt-md': true, 'q-mb-sm': true }"
@@ -53,7 +53,8 @@
             v-model="rawRating"
             max="10"
             size="2em"
-            color="secondary"
+            :color="starColor"
+            color-selected="secondary"
             icon="star_border"
             icon-selected="star"
             icon-half="star_half"
@@ -119,6 +120,13 @@ export default {
     },
     darkMode() {
       return this.$q.dark.isActive;
+    },
+    starColor() {
+      if (this.darkMode) {
+        return "secondary";
+      } else {
+        return "primary";
+      }
     }
   },
   methods: {

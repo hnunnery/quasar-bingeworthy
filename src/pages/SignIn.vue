@@ -13,8 +13,17 @@
           size="1.2em"
           label="Sign In"
         />
+        <div v-if="error">
+          <Alert :text="error.message" />
+        </div>
         <div>
-          <q-btn flat to="signup" class="text-capitalize q-mt-sm" label="Create Account Here" />
+          <q-btn
+            flat
+            to="signup"
+            @click="clearError"
+            class="text-capitalize q-mt-sm"
+            label="Create Account Here"
+          />
         </div>
       </form>
     </q-card>
@@ -22,7 +31,11 @@
 </template>
 
 <script>
+import Alert from "components/Alert";
 export default {
+  components: {
+    Alert
+  },
   data() {
     return {
       email: "",
@@ -32,10 +45,10 @@ export default {
   computed: {
     user() {
       return this.$store.state.store.user;
+    },
+    error() {
+      return this.$store.state.store.error;
     }
-    // error() {
-    //   return this.$store.state.error;
-    // }
   },
   methods: {
     onSignIn() {
@@ -43,10 +56,10 @@ export default {
         email: this.email,
         password: this.password
       });
+    },
+    clearError() {
+      this.$store.commit("store/clearError");
     }
-    // onDismissed() {
-    //   this.$store.dispatch("clearError");
-    // }
   }
 };
 </script>

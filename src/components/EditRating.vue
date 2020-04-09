@@ -57,7 +57,7 @@
             ></q-select>
           </div>
           <div
-            :class="{ 'q-mt-lg': true, 'text-h3': true, 'text-bold': !darkMode, 'text-secondary': darkMode }"
+            :class="{ 'q-mt-lg': true, 'text-h3': true, 'text-secondary': darkMode }"
           >{{ updatedRating }}/5</div>
           <div class="q-mt-sm q-mb-sm">
             <q-rating
@@ -71,7 +71,7 @@
             ></q-rating>
           </div>
         </q-card-section>
-        <q-card-section align="center" class="q-mb-lg">
+        <q-card-section align="center" class="q-mb-md">
           <q-btn
             ripple
             color="primary"
