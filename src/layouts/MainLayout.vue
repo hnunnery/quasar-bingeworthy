@@ -208,7 +208,9 @@ export default {
   watch: {
     dark() {
       this.$q.dark.set(this.dark);
-      this.$store.dispatch("store/saveUserDark", this.dark);
+      if (this.userAuth) {
+        this.$store.dispatch("store/saveUserDark", this.dark);
+      }
     },
     userDark() {
       this.$q.dark.set(this.userDark);
