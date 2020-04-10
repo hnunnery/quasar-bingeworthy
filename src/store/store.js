@@ -5,7 +5,6 @@ const state = () => ({
   userDark: true,
   ratings: [],
   masterRatings: [],
-  userRatings: [],
   recentRatings: [],
   showName: "",
   names: [],
@@ -24,9 +23,6 @@ const mutations = {
   },
   setMasterRatings(state, payload) {
     state.masterRatings = payload;
-  },
-  setUserRatings(state, payload) {
-    state.userRatings = payload;
   },
   setShowName(state, payload) {
     state.showName = payload;
@@ -92,12 +88,10 @@ const actions = {
             ratings.push(rating);
             commit("setLoadedRatings", ratings);
             dispatch("createMasterRatings");
-            dispatch("createUserRatings");
             dispatch("createRecentRatings");
           } else if (change.type == "removed") {
             commit("deleteRating", change.doc.id);
             dispatch("createMasterRatings");
-            dispatch("createUserRatings");
             dispatch("createRecentRatings");
           }
         });
@@ -147,19 +141,6 @@ const actions = {
 
     // COMMIT TO MUTATION AND STATE
     commit("setMasterRatings", master);
-  },
-  createUserRatings({ commit, state }) {
-    if (state.user) {
-      const newList = [];
-      state.ratings.forEach(rating => {
-        if (rating.userId === state.user.id) {
-          newList.push(rating);
-        }
-      });
-
-      // COMMIT TO MUTATION AND STATE
-      commit("setUserRatings", newList);
-    }
   },
   createRecentRatings({ commit }) {
     let ratings = [];
@@ -223,7 +204,6 @@ const actions = {
       id: payload.uid,
       name: payload.displayName
     });
-    dispatch("createUserRatings");
   },
   updateDisplayName({ commit }, payload) {
     commit("clearError");
@@ -262,6 +242,15 @@ const actions = {
 const getters = {
   error(state) {
     return state.error;
+  },
+  userRatings(state) {
+    let newList = [];
+    state.ratings.forEach(rating => {
+      if (rating.userId === state.user.id) {
+        newList.push(rating);
+      }
+    });
+    return newList;
   }
 };
 

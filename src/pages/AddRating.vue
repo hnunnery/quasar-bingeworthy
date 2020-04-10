@@ -116,7 +116,7 @@ export default {
       return this.$store.state.store.ratings;
     },
     userRatings() {
-      return this.$store.state.store.userRatings;
+      return this.$store.getters["store/userRatings"];
     },
     darkMode() {
       return this.$q.dark.isActive;

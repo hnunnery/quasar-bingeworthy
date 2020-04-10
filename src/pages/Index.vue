@@ -17,6 +17,15 @@
                 >{{ rating.rank }}&nbsp; - &nbsp;{{ rating.platform }}</q-item-label>
               </q-item-section>
 
+              <q-btn
+                round
+                dense
+                flat
+                class="absolute-center"
+                icon="expand_more"
+                style="margin-top: 30px; opacity: .2;"
+              />
+
               <q-space />
 
               <q-item-section top side>

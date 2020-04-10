@@ -125,7 +125,7 @@ export default {
       return a;
     },
     userRatings() {
-      return this.$store.state.store.userRatings;
+      return this.$store.getters["store/userRatings"];
     },
     updatedRating() {
       return this.rawRating / 2;

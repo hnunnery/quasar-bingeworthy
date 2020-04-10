@@ -3,7 +3,11 @@
     <q-spinner-gears color="primary" size="7em" v-if="loading" />
     <q-list v-else>
       <div class="row justify-center align-center q-py-md full-width">
-        <div class="col-12 col-sm-6 col-lg-4" v-for="(rating, index) in userRatings" :key="index">
+        <div
+          class="col-12 col-sm-6 col-lg-4"
+          v-for="(rating, index) in filteredRatings"
+          :key="index"
+        >
           <q-expansion-item expand-icon-class="hidden">
             <template v-slot:header>
               <q-item-section>
@@ -14,6 +18,15 @@
                   }}
                 </q-item-label>
               </q-item-section>
+
+              <q-btn
+                round
+                dense
+                flat
+                class="absolute-center"
+                icon="expand_more"
+                style="margin-top: 30px; opacity: .2;"
+              />
 
               <q-space />
 
@@ -66,12 +79,28 @@ export default {
   components: {
     EditRating
   },
+  data() {
+    return {
+      search: ""
+    };
+  },
   computed: {
-    userRatings() {
-      return this.$store.state.store.userRatings;
+    filteredRatings() {
+      return this.$store.getters["store/userRatings"].filter(rating => {
+        return (
+          rating.name
+            .toLowerCase()
+            .replace(/[^a-zA-Z ]/g, "")
+            .match(this.search.toLowerCase().replace(/[^a-zA-Z ]/g, "")) ||
+          rating.platform
+            .toLowerCase()
+            .replace(/[^a-zA-Z ]/g, "")
+            .match(this.search.toLowerCase().replace(/[^a-zA-Z ]/g, ""))
+        );
+      });
     },
     loading() {
-      return this.userRatings.length < 1;
+      return this.$store.getters["store/userRatings"].length < 1;
     }
   },
   methods: {

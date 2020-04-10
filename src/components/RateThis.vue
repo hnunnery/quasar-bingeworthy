@@ -101,7 +101,7 @@ export default {
       }
     },
     userRatings() {
-      return this.$store.state.store.userRatings;
+      return this.$store.getters["store/userRatings"];
     },
     userAuth() {
       return this.$store.state.store.user;
